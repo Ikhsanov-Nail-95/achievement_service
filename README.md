@@ -1,7 +1,3 @@
-# Service Template
-
-Стандартный шаблон проекта на SpringBoot
-
 # Использованные технологии
 
 * [Spring Boot](https://spring.io/projects/spring-boot) – как основной фрэймворк
