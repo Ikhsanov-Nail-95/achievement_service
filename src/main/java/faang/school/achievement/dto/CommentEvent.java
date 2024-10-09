@@ -1,15 +1,13 @@
 package faang.school.achievement.dto;
 
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@NoArgsConstructor
-@Data
-@Builder
+@Setter
+@Getter
 @AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class CommentEvent implements Event {
 
     @NotNull
