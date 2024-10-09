@@ -4,8 +4,6 @@ import faang.school.achievement.dto.Event;
 import faang.school.achievement.model.Achievement;
 import faang.school.achievement.model.AchievementProgress;
 import faang.school.achievement.model.UserAchievement;
-import faang.school.achievement.repository.AchievementProgressRepository;
-import faang.school.achievement.repository.UserAchievementRepository;
 import faang.school.achievement.service.AchievementService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -20,8 +18,6 @@ import org.springframework.scheduling.annotation.Async;
 public abstract class AbstractEventHandler<T extends Event> implements EventHandler<T> {
 
     protected final AchievementService achievementService;
-    protected final UserAchievementRepository userAchievementRepository;
-    protected final AchievementProgressRepository achievementProgressRepository;
 
     protected abstract String getAchievementName();
 
@@ -37,7 +33,7 @@ public abstract class AbstractEventHandler<T extends Event> implements EventHand
 
     @Override
     @Async
-    @Retryable(value = {OptimisticLockingFailureException.class}, maxAttempts = 4, backoff = @Backoff(delay = 1000))
+    @Retryable(retryFor = {OptimisticLockingFailureException.class}, maxAttempts = 4, backoff = @Backoff(delay = 1000))
     public void handleEvent(T event) {
 
         Achievement achievement = null;

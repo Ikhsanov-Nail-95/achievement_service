@@ -2,6 +2,7 @@ package faang.school.achievement.listener;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import faang.school.achievement.dto.Event;
+import faang.school.achievement.exception.MessageProcessingException;
 import faang.school.achievement.handler.EventHandler;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,9 +28,8 @@ public abstract class AbstractListener<T extends Event> implements MessageListen
             event = listenEvent(message);
         } catch (IOException e) {
             log.warn("Unsuccessful mapping", e);
-            throw new RuntimeException(e);
+            throw new MessageProcessingException("Error processing message", e);
         }
-
 
         log.info(eventHandlers.toString());
         eventHandlers.forEach(handler -> handler.handleEvent(event));

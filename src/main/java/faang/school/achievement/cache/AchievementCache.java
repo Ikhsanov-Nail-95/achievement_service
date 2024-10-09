@@ -14,6 +14,7 @@ import java.util.Optional;
 @Component
 @RequiredArgsConstructor
 public class AchievementCache {
+
     private final AchievementRepository achievementRepository;
     private final Map<String, Achievement> achievementsByName = new HashMap<>();
 
@@ -29,7 +30,7 @@ public class AchievementCache {
         return Optional.ofNullable(achievementsByName.get(title));
     }
 
-    public HashMap<String, Achievement> getAchievementsByName() {
+    public Map<String, Achievement> getAchievementsByName() {
         return (HashMap<String, Achievement>) achievementsByName;
     }
 }

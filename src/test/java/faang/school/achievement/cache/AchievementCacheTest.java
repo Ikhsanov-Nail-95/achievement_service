@@ -12,6 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -33,10 +34,10 @@ class AchievementCacheTest {
     }
 
     @Test
-    public void testInit() {
+    void testInit() {
         Mockito.when(achievementRepository.findAll()).thenReturn(List.of(firstAchievement));
         achievementCache.init();
-        HashMap<String, Achievement> cachedMap = achievementCache.getAchievementsByName();
+        Map<String, Achievement> cachedMap = achievementCache.getAchievementsByName();
         assertEquals(map, cachedMap);
     }
 
